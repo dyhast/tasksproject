@@ -1,0 +1,78 @@
+<table class = 'tasks table' style="display:flex; flex-direction:column; justify-content:space-around; width:100%; table-layout: fixed;">
+    <th class='header row' style="display:flex; flex-direction:row; justify-content:space-between; width:100%; text-align:center">
+    <td class="task header" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 8%; text-align: center;">
+        Заголовок задачи
+    </td>
+    <td class="task descript" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 29%; text-align: center;">
+        Описание задачи
+    </td>
+    <td class="task end date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+        Выполнить ДО
+    </td>
+    <td class="task create date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+        Создана
+    </td>
+    <td class="task upd date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+        Обновлена
+    </td>
+    <td class="task prior" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 5%; text-align: center;">
+        Приоритет задачи
+    </td>
+    <td class="task status" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+        Статус задачи
+    </td>
+    <td class="task creator" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 15%; text-align: center;">
+        Задачу поставил
+    </td>
+    <td class="task worker" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 15%; text-align: center;">
+        Исполнитель
+    </td>
+    </th>
+    <tr class='data row' style="display:flex; flex-direction:row; justify-content:space-between; width:100%; text-align:center">
+        <form method = 'POST' action = 'http://localhost:3001/CreateTask' name="createtaskform">
+            <input type='hidden' name = 'IdTask' value = '{{IdTask}}' />
+    <td class="task header" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 8%; text-align: center;">
+        <input type = 'text' name = 'TaskHeader'/>
+    </td>
+    <td class="task descript" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 29%; text-align: center;">
+        <input type = 'text' name = 'TaskDescription'/>
+    </td>
+    <td class="task end date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+        <input type = 'datetime' name = 'TaskEndDate'/>
+    </td>
+    <td class="task create date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+        <input type = 'datetime' name = 'TaskCreateDate'/>
+    </td>
+    <td class="task upd date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+        <input type = 'datetime' name = 'TaskUpdDate'/>
+    </td>
+    <td class="task prior" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 5%; text-align: center;">
+        <select name = 'TaskPrior'>
+            <option selected value = 'low'>low</option>
+            <option value = 'middle'>middle</option>
+            <option value = 'high'>high</option>
+        </select>
+    </td>
+    <td class="task status" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+        <select name = 'TaskStatus'>
+            <option selected value = 'К выполнению'>К выполнению</option>
+            <option value = 'Выполняется'>Выполняется</option>
+            <option value = 'Выполнена'>Выполнена</option>
+            <option value = 'Отменена'>Отменена</option>
+        </select>
+    </td>
+    <td class="task creator" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 15%; text-align: center;">
+        <input type = 'hidden' name = 'TaskCreator' value = '{{IdUser}}' disabled>
+        {{IdUser}}
+        </input>
+    </td>
+    <td class="task worker" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 15%; text-align: center;">
+        <select name = 'TaskWorker'>
+            <option selected value = '{{IdUser}}'>{{CurrentName}}</option>
+            <option value = '{{IdWorker}}'>{{WorkerName}}</option>
+        </select>
+    </td>
+        </form>
+    </tr>
+</table>
+<input type="submit" value="Создать" form = 'createtaskform'/>

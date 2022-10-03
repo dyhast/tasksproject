@@ -1,0 +1,17 @@
+.tasks header tool{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+
+.user{
+
+}
+
+.time{
+
+}
+
+.createtask{
+
+}

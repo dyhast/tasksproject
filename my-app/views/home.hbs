@@ -1,0 +1,69 @@
+<div class="tasks body tool" style="display:flex; flex-direction:column; justify-content:space-around; align-items: center;">
+    <div style="display:flex; flex-direction:row; justify-content:space-between; align-items: center;">
+        <h1>{{title}}</h1>
+        <div style="padding: 0pt 15pt 0pt 15pt;">
+            Завершаются:
+            <form name = 'autorizeform' method = 'POST' action = 'http://localhost:3001/TasksPage'>
+                <input type='hidden' name = 'FilterDate' value = 'today' />
+                <input type="submit" value="Сегодня"/>
+            </form>
+            <form name = 'autorizeform' method = 'POST' action = 'http://localhost:3001/TasksPage'>
+                <input type='hidden' name = 'FilterDate' value = 'week' />
+                <input type="submit" value="На этой неделе"/>
+            </form>
+            <form name = 'autorizeform' method = 'POST' action = 'http://localhost:3001/TasksPage'>
+                <input type='hidden' name = 'FilterDate' value = 'more' />
+                <input type="submit" value="Позднее"/>
+            </form>
+        </div>
+        <div style="padding: 0pt 15pt 0pt 15pt;">
+            Задачи подчиненных:
+            <form name = 'autorizeform' method = 'POST' action = 'http://localhost:3001/TasksPage'>
+                <input type='hidden' name = 'BossTasks' value = 'boss' />
+                <input type="submit" value="Отобразить"/>
+            </form>
+        </div>
+        <div style="padding: 0pt 15pt 0pt 15pt;">
+            Сортировка по изменениям:
+            <form name = 'autorizeform' method = 'POST' action = 'http://localhost:3001/TasksPage'>
+                <input type='hidden' name = 'UpdateSort' value = 'updatesort' />
+                <input type="submit" value="Отобразить"/>
+            </form>
+        </div>
+    </div>
+    <table class = 'tasks table' style="display:flex; flex-direction:column; justify-content:space-around; width:100%; table-layout: fixed;">
+        <th class='header row' style="display:flex; flex-direction:row; justify-content:space-between; width:100%; text-align:center">
+            <td class="task header" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 8%; text-align: center;">
+                Заголовок задачи
+            </td>
+            <td class="task descript" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 29%; text-align: center;">
+                Описание задачи
+            </td>
+            <td class="task end date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+                Выполнить ДО
+            </td>
+            <td class="task create date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+                Создана
+            </td>
+            <td class="task upd date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+                Обновлена
+            </td>
+            <td class="task prior" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 5%; text-align: center;">
+                Приоритет задачи
+            </td>
+            <td class="task status" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+                Статус задачи
+            </td>
+            <td class="task creator" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 15%; text-align: center;">
+                Задачу поставил
+            </td>
+            <td class="task worker" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 15%; text-align: center;">
+                Исполнитель
+            </td>
+        </th>
+        <form method = 'POST' action = 'http://localhost:3001/EditTaskPage' target="_blank" name="changetaskform"></form>
+        {{#each task}}
+            {{{tasksfunct}}}
+        {{/each}}
+    </table>
+</div>
