@@ -35,32 +35,27 @@ function getuser(UserId) {
     })
 }
 
+function UpdTask(TaskId, params) {
+    return knex('TasksTable').where('TaskId', TaskId).update(params).then(function (trx) {
+        //console.dir(trx);
+        return trx;
+    })
+}
+
+function CreateTask(params) {
+    return knex('TasksTable').insert(params).then(function (trx) {
+        //console.dir(trx);
+        return trx;
+    })
+}
 
 module.exports = {
     selectuser: selectuser,
     usertasks: usertasks,
     getuser: getuser,
     bossusertasks:bossusertasks,
-    getupdtasks: getupdtasks
+    getupdtasks: getupdtasks,
+    UpdTask: UpdTask,
+    CreateTask: CreateTask
 };
 
-
-
-
-//console.log(rez);
-/*
-knex.transaction(function (trx) {
-        trx.select('UserLogin').from('UsersTable').then(trx.commit).catch(trx.rollback);
-    }).then(function (trx) {
-        //console.dir(trx);
-        rez = 1;
-    //console.log(rez);
-        return trx;
-    }).catch(function (error) {
-        rez = 2;
-        console.error(error);
-
-    });
-*/
-//console.log(rez);
-//console.dir(dfg);

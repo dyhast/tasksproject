@@ -16,7 +16,7 @@ app.engine(
         layoutsDir: (__dirname + '/views/layouts'),
         helpers: {
             tasksfunct: function() {
-                return '<button visibility="hidden" form = "changetaskform" value = "'+ this.TaskId +'"><tr class="tasks row " style="display:flex; flex-direction:row; justify-content:space-between; width:100%; text-align:center">' +
+                return '<tr class="tasks row " style="display:flex; flex-direction:row; justify-content:space-between; width:100%; text-align:center">' +
                     '<td class="task header" style="padding: 0pt 2pt 0pt 2pt; border: 2px ridge black; width: 8%; text-align: center; word-wrap:break-word; color:'+ this.textcolor + ';">' +
                      this.TaskHeader +
                     '</td><td class="task descript" style="padding: 0pt 2pt 0pt 2pt; border: 2px ridge black; width: 29%; text-align: center; word-wrap:break-word;">'+
@@ -35,7 +35,7 @@ app.engine(
                     this.creatorname +
                     '</td><td class="task worker" style="padding: 0pt 2pt 0pt 2pt; border: 2px ridge black; width: 15%; text-align: center; word-wrap:break-word;">' +
                     this.workername +
-                    '</td></tr></button>';
+                    '</td></tr>';
             }
         }
     })
@@ -59,7 +59,7 @@ app.post("/", urlencodedParser, async function (request, response){
     console.log('pass:'+pass);
     console.log('addr:'+addr);
     function getuser(login) {
-        let select = require('./knex/autoriz_user.js');
+
         let result =  select.selectuser(login);
         return result;
     }
@@ -96,13 +96,13 @@ app.get('/TasksPage', async function(request, response) {
     }
     let UserId=global.UserId;
     function getusertasks(UserId) {
-        let select = require('./knex/autoriz_user.js');
+
         let result =  select.usertasks(UserId);
         return result;
     }
 
     function getuser(UserId) {
-        let select = require('./knex/autoriz_user.js');
+
         let result =  select.getuser(UserId);
         return result;
     }
@@ -188,25 +188,25 @@ app.post("/TasksPage", urlencodedParser, async function (request, response) {
 
 
     function getusertasks(UserId) {
-        let select = require('./knex/autoriz_user.js');
+
         let result =  select.usertasks(UserId);
         return result;
     }
 
     function bossusertasks(UserId) {
-        let select = require('./knex/autoriz_user.js');
+
         let result =  select.bossusertasks(UserId);
         return result;
     }
 
     function getuser(UserId) {
-        let select = require('./knex/autoriz_user.js');
+
         let result =  select.getuser(UserId);
         return result;
     }
 
     function getupdtasks(UserId) {
-        let select = require('./knex/autoriz_user.js');
+
         let result =  select.getupdtasks(UserId);
         return result;
     }
@@ -278,7 +278,7 @@ app.post("/EditTaskPage", urlencodedParser, async function (request, response){
         let UserId = global.UserId;
         var WorkerName = ' ';
         function getuser(UserId) {
-            let select = require('./knex/autoriz_user.js');
+
             let result =  select.getuser(UserId);
             return result;
         }
@@ -289,8 +289,10 @@ app.post("/EditTaskPage", urlencodedParser, async function (request, response){
         let CurrentWorker = await getuser(WorkersId);
         CurrentWorker = CurrentWorker[0];
         console.dir(CurrentWorker);
-        if (CurrentWorker == undefined){
+        if (CurrentWorker !== undefined){
+            WorkersId = CurrentWorker.UserId;
             WorkerName = CurrentWorker.UserFName + ' ' + CurrentWorker.UserSName;
+
         }
         let date = new Date();
         response.render("EditTask", {
@@ -302,9 +304,62 @@ app.post("/EditTaskPage", urlencodedParser, async function (request, response){
             CurrentName: CurrentName,
             IdTask: TaskId
         });
+    }
+})
+
+app.get('/EditTask', (request, response) => {
+    response.redirect('http://localhost:3000');
+})
+
+//Страница создания новой задачи
+app.post("/EditTask", urlencodedParser, async function (request, response){
+    if (request.body.IdTask !== undefined)
+    {
+        let TaskId = request.body.IdTask;
+        let now = new Date();
+        let params = {TaskHeader: request.body.TaskHeader,
+            TaskDescription: request.body.TaskDescription,
+            TaskEndDate: request.body.TaskEndDate,
+            TaskCreateDate: request.body.TaskCreateDate,
+            TaskUpdDate: now,
+            TaskPrior: request.body.TaskPrior,
+            TaskStatus: request.body.TaskStatus,
+            TaskCreatorId: request.body.TaskCreatorId,
+            TaskWorkerId:request.body.TaskWorkerId};
+        function UpdTask(TaskId, params) {
+            let result =  select.UpdTask(TaskId, params);
+            return result;
+        }
+        let result = UpdTask(TaskId, params);
 
     }
+})
 
+app.get('/CreateTask', (request, response) => {
+    response.redirect('http://localhost:3000');
+})
+
+//Страница создания новой задачи
+app.post("/CreateTask", urlencodedParser, async function (request, response){
+    if (request.body.IdTask == 0)
+    {
+        let now = new Date();
+        let params = {TaskHeader: request.body.TaskHeader,
+            TaskDescription: request.body.TaskDescription,
+            TaskEndDate: request.body.TaskEndDate,
+            TaskCreateDate: request.body.TaskCreateDate,
+            TaskUpdDate: now,
+            TaskPrior: request.body.TaskPrior,
+            TaskStatus: request.body.TaskStatus,
+            TaskCreatorId: request.body.TaskCreatorId,
+            TaskWorkerId:request.body.TaskWorkerId};
+        function CreateTask(params) {
+            let result =  select.CreateTask(params);
+            return result;
+        }
+        let result = CreateTask(params);
+
+    }
 })
 
 app.listen(PORT, () => {
