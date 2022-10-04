@@ -307,11 +307,12 @@ app.post("/EditTaskPage", urlencodedParser, async function (request, response){
     }
 })
 
+//Редирект на страницу авторизации
 app.get('/EditTask', (request, response) => {
     response.redirect('http://localhost:3000');
 })
 
-//Страница создания новой задачи
+//Backend Страница редактирования существующей задачи
 app.post("/EditTask", urlencodedParser, async function (request, response){
     if (request.body.IdTask !== undefined)
     {
@@ -335,11 +336,12 @@ app.post("/EditTask", urlencodedParser, async function (request, response){
     }
 })
 
+//Редирект на страницу авторизации
 app.get('/CreateTask', (request, response) => {
     response.redirect('http://localhost:3000');
 })
 
-//Страница создания новой задачи
+//Backend Страница создания новой задачи
 app.post("/CreateTask", urlencodedParser, async function (request, response){
     if (request.body.IdTask == 0)
     {
@@ -347,7 +349,7 @@ app.post("/CreateTask", urlencodedParser, async function (request, response){
         let params = {TaskHeader: request.body.TaskHeader,
             TaskDescription: request.body.TaskDescription,
             TaskEndDate: request.body.TaskEndDate,
-            TaskCreateDate: request.body.TaskCreateDate,
+            TaskCreateDate: now,
             TaskUpdDate: now,
             TaskPrior: request.body.TaskPrior,
             TaskStatus: request.body.TaskStatus,
@@ -361,6 +363,47 @@ app.post("/CreateTask", urlencodedParser, async function (request, response){
 
     }
 })
+
+//Редирект на страницу авторизации
+app.get('/CreateUserPage', (request, response) => {
+    response.render("CreateNewUser", {
+    });
+})
+
+//Страница создания новой задачи
+app.post("/CreateUserPage", urlencodedParser, async function (request, response){
+     response.render("CreateNewUser", {
+     });
+})
+
+//Редирект на страницу авторизации
+app.get('/CreateUser', (request, response) => {
+    response.redirect('http://localhost:3000');
+})
+
+//Backend Страница создания нового пользователя
+app.post("/CreateUser", urlencodedParser, async function (request, response){
+    console.log('createuser');
+        let params = {
+            UserFname: request.body.UserFname,
+            UserSname: request.body.UserSname,
+            UserTname: request.body.UserTname,
+            UserLogin: request.body.UserLogin,
+            UserPass: request.body.UserPass,
+            UserBoss: 0,
+            UserWorkers: 0,
+            IdUser: 0,
+        }
+        function CreateUser(params) {
+            let result =  select.CreateUser(params);
+            return result;
+        }
+        let result = CreateUser(params);
+        console.dir(result);
+    response.redirect('http://localhost:3000');
+})
+
+
 
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);

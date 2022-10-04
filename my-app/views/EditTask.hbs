@@ -1,24 +1,18 @@
 <table class = 'tasks table' style="display:flex; flex-direction:column; justify-content:space-around; width:100%; table-layout: fixed;">
     <th class='header row' style="display:flex; flex-direction:row; justify-content:space-between; width:100%; text-align:center">
-    <td class="task header" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 8%; text-align: center;">
-        Заголовок задачи
+    <td class="task header" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 15%; text-align: center;">
+        Заголовок задачи <a style="color:red">*</a>
     </td>
-    <td class="task descript" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 29%; text-align: center;">
+    <td class="task descript" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 30%; text-align: center;">
         Описание задачи
     </td>
-    <td class="task end date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
-        Выполнить ДО
+    <td class="task end date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 10%; text-align: center;">
+        Выполнить ДО <a style="color:red">*</a>
     </td>
-    <td class="task create date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
-        Создана
-    </td>
-    <td class="task upd date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
-        Обновлена
-    </td>
-    <td class="task prior" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 5%; text-align: center;">
+    <td class="task prior" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
         Приоритет задачи
     </td>
-    <td class="task status" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+    <td class="task status" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 8%; text-align: center;">
         Статус задачи
     </td>
     <td class="task creator" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 15%; text-align: center;">
@@ -31,30 +25,24 @@
     <tr class='data row' style="display:flex; flex-direction:row; justify-content:space-between; width:100%; text-align:center">
         <form method = 'POST' action = 'http://localhost:3001/CreateTask' name="createtaskform">
             <input type='hidden' name = 'IdTask' value = '{{IdTask}}' />
-    <td class="task header" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 8%; text-align: center;">
-        <input type = 'text' name = 'TaskHeader'/>
+    <td class="task header" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 15%; text-align: center;">
+        <input type = 'text' name = 'TaskHeader' style="width: 100%;" required/>
     </td>
-    <td class="task descript" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 29%; text-align: center;">
-        <input type = 'text' name = 'TaskDescription'/>
+    <td class="task descript" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 30%; text-align: center;">
+        <input type = 'text' name = 'TaskDescription' style="width: 100%;"/>
     </td>
-    <td class="task end date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
-        <input type = 'datetime' name = 'TaskEndDate'/>
+    <td class="task end date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 10%; text-align: center;">
+        <input type = 'datetime' name = 'TaskEndDate' style="width: 100%;" required/>
     </td>
-    <td class="task create date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
-        <input type = 'datetime' name = 'TaskCreateDate'/>
-    </td>
-    <td class="task upd date" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
-        <input type = 'datetime' name = 'TaskUpdDate'/>
-    </td>
-    <td class="task prior" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 5%; text-align: center;">
-        <select name = 'TaskPrior'>
+    <td class="task prior" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
+        <select name = 'TaskPrior' style="width: 100%;">
             <option selected value = 'low'>low</option>
             <option value = 'middle'>middle</option>
             <option value = 'high'>high</option>
         </select>
     </td>
-    <td class="task status" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 7%; text-align: center;">
-        <select name = 'TaskStatus'>
+    <td class="task status" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 8%; text-align: center;">
+        <select name = 'TaskStatus' style="width: 100%;">
             <option selected value = 'К выполнению'>К выполнению</option>
             <option value = 'Выполняется'>Выполняется</option>
             <option value = 'Выполнена'>Выполнена</option>
@@ -62,12 +50,12 @@
         </select>
     </td>
     <td class="task creator" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 15%; text-align: center;">
-        <input type = 'hidden' name = 'TaskCreator' value = '{{IdUser}}' disabled>
+        <input type = 'hidden' name = 'TaskCreator' value = '{{IdUser}}' style="width: 100%;" disabled>
         {{CurrentName}}
         </input>
     </td>
     <td class="task worker" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 15%; text-align: center;">
-        <select name = 'TaskWorker'>
+        <select name = 'TaskWorker' style="width: 100%;">
             <option selected value = '{{IdUser}}'>{{CurrentName}}</option>
             <option value = '{{IdWorker}}'>{{WorkerName}}</option>
         </select>

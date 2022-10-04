@@ -1,5 +1,5 @@
 <div class = 'tasks header tool' style="display: flex;flex-direction: row;justify-content:space-between;">
-    <div id = 'user'>{{loginuser}}</div>
+    {{#unless IdUser}}<h1 id = 'create user'>Создание пользователя</h1>{{else}}<div id = 'user'>{{loginuser}}</div>
     <div id = 'time'>{{currdate}}</div>
     <div id = 'createtask'>
         <form method = 'POST' action = 'http://localhost:3001/EditTaskPage' target="_blank">
@@ -7,5 +7,5 @@
             <input type='hidden' name = 'IdUser' value = "{{IdUser}}" />
             <input type="submit" value="Создать новую задачу"/>
         </form>
-    </div>
+    </div>{{/unless}}
 </div>

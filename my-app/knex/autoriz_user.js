@@ -49,6 +49,14 @@ function CreateTask(params) {
     })
 }
 
+function CreateUser (params) {
+    return knex('UsersTable').insert(params).then(function (trx) {
+        //console.dir(trx);
+        return trx;
+    })
+}
+
+
 module.exports = {
     selectuser: selectuser,
     usertasks: usertasks,
@@ -56,6 +64,7 @@ module.exports = {
     bossusertasks:bossusertasks,
     getupdtasks: getupdtasks,
     UpdTask: UpdTask,
-    CreateTask: CreateTask
+    CreateTask: CreateTask,
+    CreateUser: CreateUser,
 };
 

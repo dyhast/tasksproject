@@ -1,0 +1,40 @@
+
+<table class = 'tasks table' style="display:flex; flex-direction:column; justify-content:space-around; width:100%; table-layout: fixed;">
+    <th class='header row' style="display:flex; flex-direction:row; justify-content:space-between; width:100%; text-align:center">
+    <td class="user first name" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 20%; text-align: center;">
+        Введите имя <a style="color:red">*</a>
+    </td>
+    <td class="user second name" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 20%; text-align: center;">
+        Введите фамилию
+    </td>
+    <td class="user third name" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 20%; text-align: center;">
+        Введите отчество
+    </td>
+    <td class="user login" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 20%; text-align: center;">
+        Введите логин <a style="color:red">*</a>
+    </td>
+    <td class="user pass" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 20%; text-align: center;">
+        Введите пароль <a style="color:red">*</a>
+    </td>
+    </th>
+    <tr class='data row' style="display:flex; flex-direction:row; justify-content:space-between; width:100%; text-align:center">
+        <form method = 'POST' action = 'http://localhost:3001/CreateUser' name="createuserform">
+            <td class="user first name" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 20%; text-align: center;">
+                <input type = 'text' name = 'UserFName' required/>
+            </td>
+            <td class="user second name" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 20%; text-align: center;">
+                <input type = 'text' name = 'UserSName'/>
+            </td>
+            <td class="user third name" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 20%; text-align: center;">
+                <input type = 'text' name = 'UserTName'/>
+            </td>
+            <td class="user login" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 20%; text-align: center;">
+                <input type = 'text' name = 'UserLogin' required/>
+            </td>
+            <td class="user pass" style="padding: 0pt 5pt 0pt 5pt; border: 2px ridge black; width: 20%; text-align: center;">
+                <input type = 'password' name = 'UserPass' required/>
+            </td>
+        </form>
+    </tr>
+</table>
+<input type="submit" value="Зарегистрироваться" form = 'createuserform'/>
