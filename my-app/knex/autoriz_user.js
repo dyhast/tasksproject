@@ -51,7 +51,7 @@ function CreateTask(params) {
 
 function CreateUser (params) {
     return knex('UsersTable').insert(params).then(function (trx) {
-        //console.dir(trx);
+        console.dir(trx);
         return trx;
     })
 }

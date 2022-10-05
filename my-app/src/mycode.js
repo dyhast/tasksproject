@@ -7,10 +7,11 @@ function Mycode() {
 			<input type='hidden' name = 'addr' value = 'SelectUser' />
  		Login:<input type="text" name = 'login'/> <br/>
  		Password:
-<input type="password" name = 'pass'/> <br></br>
+			<input type="password" name = 'pass'/> <br></br>
 			<input type="submit" />
  		</form>
  		</div>
  	);
 }
+
 export default Mycode;

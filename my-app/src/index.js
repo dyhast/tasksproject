@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Mycode from './mycode';
 import reportWebVitals from './reportWebVitals';
+import UserAdd from './UserAdd';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Mycode />
+      <UserAdd/>
   </React.StrictMode>
 );
 

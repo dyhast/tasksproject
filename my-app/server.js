@@ -385,14 +385,13 @@ app.get('/CreateUser', (request, response) => {
 app.post("/CreateUser", urlencodedParser, async function (request, response){
     console.log('createuser');
         let params = {
-            UserFname: request.body.UserFname,
-            UserSname: request.body.UserSname,
-            UserTname: request.body.UserTname,
+            UserFName: request.body.UserFName,
+            UserSName: request.body.UserSName,
+            UserTName: request.body.UserTName,
             UserLogin: request.body.UserLogin,
             UserPass: request.body.UserPass,
             UserBoss: 0,
             UserWorkers: 0,
-            IdUser: 0,
         }
         function CreateUser(params) {
             let result =  select.CreateUser(params);
@@ -402,8 +401,6 @@ app.post("/CreateUser", urlencodedParser, async function (request, response){
         console.dir(result);
     response.redirect('http://localhost:3000');
 })
-
-
 
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);

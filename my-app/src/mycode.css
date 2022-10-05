@@ -13,3 +13,9 @@ weighht:  300pt;
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.UserAdd
+{
+  position: absolute;
+  top: 40px; right: 40px;
+}
